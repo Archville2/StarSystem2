@@ -1,5 +1,6 @@
 package org.my.test.stars;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,9 @@ public class StarSystem {
     List<Star> starsList=new ArrayList<>();
     String starSystemName;
 
-    public Star getStar(String starName){
-        for (Star stars:starsList) {
+    public Star getStar(String starName) throws StarNotFoundException{
+        if (starName==null) throw new StarNotFoundException();
+        for (Star stars : starsList) {
             if (stars.starName.equals(starName)) {
                 return stars;
             }
