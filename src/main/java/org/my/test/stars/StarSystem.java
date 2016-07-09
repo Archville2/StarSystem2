@@ -1,38 +1,35 @@
 package org.my.test.stars;
 
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.plugin2.message.Message;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StarSystem {
+
+    private static final Logger logger = LoggerFactory.getLogger(Message.class);
     List<Star> starsList=new ArrayList<>();
     String starSystemName;
 
-    public Star getStar(String starName) throws StarNotFoundException{
-        if (starName==null) throw new StarNotFoundException();
+    public Star getStar(String starName) throws NameNotFoundException {
         for (Star stars : starsList) {
             if (stars.starName.equals(starName)) {
                 return stars;
             }
         }
-        return null;
+        throw new NameNotFoundException(starName);
     }
 
     public StarSystem(String starSystemName){
         this.starSystemName=starSystemName;
-        System.out.println("Star system " + starSystemName + " created!");
+        logger.info("Star system " + starSystemName + " created!");
     }
 
     public void addStar(String starName){
         Star star=new Star(starName);
         this.starsList.add(star);
-        System.out.println("Star " + starName + " created!");
+        logger.info("Star " + starName + " created!");
 
-    }
-
-    @Override
-    public String toString(){
-
-        return starSystemName;
     }
 }

@@ -1,41 +1,52 @@
 package org.my.test.stars;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.plugin2.message.Message;
+
 public class Print {
 
+    private static final Logger logger = LoggerFactory.getLogger(Message.class);
+    String text="";
+
     public void printAllObjects(StarSystem starSystem){
-        System.out.println("\nStar system name: " + starSystem.starSystemName);
+        logger.info("Star system name: " + starSystem.starSystemName);
 
-        System.out.print("Star(s) name(s): ");
+        text=("Star(s) name(s): ");
         for (Star stars:starSystem.starsList){
-            System.out.print(stars+" ");
+            text+=(stars + " ");
         }
+        logger.info(text);
 
-        System.out.print("\nPlanet(s) name(s): ");
+        text=("Planet(s) name(s): ");
         for (Star stars:starSystem.starsList){
             for (Planet planets:stars.planetsList){
-                System.out.print(planets+" ");
+                text+=(planets + " ");
             }
         }
+        logger.info(text);
 
-        System.out.print("\nMoon(s) name(s): ");
+        text=("Moon(s) name(s): ");
         for (Star stars:starSystem.starsList) {
             for (Planet planets : stars.planetsList) {
                 for (Moon moons : planets.moonsList) {
-                    System.out.print(moons + " ");
+                    text+=(moons + " ");
                 }
             }
         }
-        System.out.print("\n");
+        logger.info(text);
+
     }
 
     public void printDetailedInfo(StarSystem starSystem,String starName){
         for (Star stars:starSystem.starsList) {
             if (stars.starName.equals(starName)) {
                 for (Planet planets : stars.planetsList) {
-                    System.out.print("\nPlanet " + planets + " has ");
+                    text=("Planet " + planets + " has ");
                     for (Moon moons : planets.moonsList) {
-                        System.out.print(moons + " ");
+                        text+=(moons + " ");
                     }
+                    logger.info(text);
                 }
             }
         }
@@ -54,6 +65,6 @@ public class Print {
             }
         }
 
-        System.out.println("\n\nStar system "+starSystem.starSystemName+" has "+totalStars+" star(s), "+totalPlanets+" planet(s) and "+totalMoons+" moon(s).");
+        logger.info("Star system "+starSystem.starSystemName+" has "+totalStars+" star(s), "+totalPlanets+" planet(s) and "+totalMoons+" moon(s).");
     }
 }

@@ -1,9 +1,14 @@
 package org.my.test.stars;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.plugin2.message.Message;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Planet {
+
+    private static final Logger logger = LoggerFactory.getLogger(Message.class);
     List<Moon> moonsList=new ArrayList<>();
     String planetName;
 
@@ -14,7 +19,7 @@ public class Planet {
     public void addMoon(String moonName){
         Moon moon=new Moon(moonName);
         moonsList.add(moon);
-        System.out.println("Moon " + moonName + " created!");
+        logger.info("Moon " + moonName + " created!");
     }
 
     @Override

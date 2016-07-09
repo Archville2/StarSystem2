@@ -1,6 +1,7 @@
 package org.my.test.stars;
 
 public class Moon {
+
     String moonName;
 
     public Moon(String moonName){
